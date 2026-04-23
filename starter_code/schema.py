@@ -1,13 +1,14 @@
 from pydantic import BaseModel, Field
+from typing import Optional
 
 # ==========================================
-# ROLE 1: LEAD DATA ARCHITECT
+# ROLE 1: LEAD DATA ARCHITECT (SOLUTION)
 # ==========================================
 
 class UnifiedDocument(BaseModel):
-    """
-    Hệ thống cần 6 trường thông tin chuẩn (document_id, source_type, author, category, content, timestamp). 
-    TODO: Khai báo các trường với kiểu dữ liệu str ở dưới.
-    """
-    # Khai báo các trường ở đây...
-    pass
+    document_id: str = Field(..., description="Unique ID for the document")
+    source_type: str = Field(..., description="E.g., PDF, Video")
+    author: Optional[str] = Field(None, description="Creator or author name")
+    category: Optional[str] = Field(None, description="Normalized category")
+    content: str = Field(..., description="The main corpus text")
+    timestamp: str = Field(..., description="ISO 8601 string representing creation time")
